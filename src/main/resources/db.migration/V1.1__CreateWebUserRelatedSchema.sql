@@ -180,7 +180,28 @@ create table IF NOT EXISTS public.web_user_permission_group
     permission          varchar(20),
     active              boolean                  default true
 );
-
+create table IF NOT EXISTS public.customer
+(
+    web_id         bigint                                 not null
+        constraint pk_customer
+            primary key,
+    version        integer                  default 0     not null,
+    date_created   timestamp with time zone default now() not null,
+    date_updated   timestamp with time zone default now() not null,
+    status         integer                  default 0     not null,
+    first_name     varchar,
+    last_name      varchar,
+    email          varchar,
+    phone          varchar,
+    user_name      varchar,
+    password       varchar,
+    gender         int,
+    dob            timestamp with time zone,
+    active         boolean                  default true,
+    middle_name    varchar,
+    time_zone      timestamp with time zone,
+    language       varchar
+);
 create unique index uq_web_user_permission_group__permission_id
     on public.web_user_permission_group (permission_id);
 
@@ -244,7 +265,11 @@ INSERT INTO public.web_user (web_id, date_created, date_updated, first_name, las
                              user_name, password)
 VALUES (1, now(), now(), 'Support', 'User', 'admin@TEST01.com', 'admin@TEST01.com',
         '$2a$10$CkQY8PpSb2tvPHnAnXb3ju00RZec4ivvrfSilQLywJFs2PYqWqAu6');
-
+ -- TODO data for customer
+ INSERT INTO public.customer (web_id, date_created, date_updated, first_name, last_name, email,
+                              user_name, password)
+ VALUES (2, now(), now(), 'test', 'User', 'test@test.com', 'test@test.com',
+         '$2a$10$CkQY8PpSb2tvPHnAnXb3ju00RZec4ivvrfSilQLywJFs2PYqWqAu6');
 -- TODO data for web_user_role
 INSERT INTO public.web_user_role (web_id, date_created, date_updated, web_user_id, role_id)
 VALUES (1, now(), now(), 1, 3);

@@ -1,6 +1,5 @@
 package com.login.loginUser.services.Impl;
 
-
 import com.login.loginUser.domain.Permission;
 import com.login.loginUser.exception.ResourceNotFoundException;
 import com.login.loginUser.models.PermissionModel;
@@ -24,8 +23,6 @@ import static com.login.loginUser.specifications.PermissionsSpecification.withSe
 @Service
 public class PermissionServiceImpl implements PermissionServices {
     @NonNull PermissionsRepository permissionsRepository;
-
-
     @Override
     public Page<PermissionModel> getPermissions(AuthUserInfo user, Long branch, boolean active, String search, Pageable pageable) {
         Specification<Permission> permissionSpecification = Specification.where(withActive(active));

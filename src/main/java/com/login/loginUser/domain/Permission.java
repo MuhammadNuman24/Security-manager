@@ -12,7 +12,6 @@ public class Permission extends BaseEntity {
     public enum PermissionUse {
         STAFF, CUSTOMER, ALL
     }
-
     @Column(nullable = true, name = "permission_code")
     private String permissionCode;
 
@@ -30,4 +29,5 @@ public class Permission extends BaseEntity {
     private PermissionUse use;
     @Column(name = "active")
     private boolean active;
+
 }
